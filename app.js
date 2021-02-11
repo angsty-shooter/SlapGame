@@ -29,7 +29,7 @@ function punch(key) {
     ++hits
     console.log(enemy[key].health)
     update(enemy[key])
-    death()
+    death(enemy[key])
 }
 
 function kick(key) {
@@ -37,7 +37,7 @@ function kick(key) {
     ++hits
     console.log(enemy[key].health)
     update(enemy[key])
-    death()
+    death(enemy[key])
 }
 
 function death(target) {

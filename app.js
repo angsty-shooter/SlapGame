@@ -1,34 +1,47 @@
+ var enemy = {
+     cat: {
+        name: 'Stinky', 
+        health: 100,
+        hits: 0,
+     },
+     catMaster: {
+         name: 'CatMaster',
+         health: 150,
+         hits: 0,
+     }
+ }
 
-let pHealth = 100
+
+
 let catName = "Stinky"
 let hits = 0
 
-function slap() {
-    --pHealth
+function slap(key) {
+    --enemy[key].health
     ++hits
-    console.log(pHealth)
-    update()
+    console.log(enemy[key].name)
+    update(enemy[key])
+    death(enemy[key])
+}
+
+function punch(key) {
+    enemy[key].health -= 5
+    ++hits
+    console.log(enemy[key].health)
+    update(enemy[key])
     death()
 }
 
-function punch() {
-    pHealth -= 5
+function kick(key) {
+    enemy[key].health -= 10
     ++hits
-    console.log(pHealth)
-    update()
+    console.log(enemy[key].health)
+    update(enemy[key])
     death()
 }
 
-function kick() {
-    pHealth -= 10
-    ++hits
-    console.log(pHealth)
-    update()
-    death()
-}
-
-function death() {
-    if (pHealth == 0) {
+function death(target) {
+    if (target.health == 0) {
         document.getElementById("cats").innerHTML = `<p><img src="cartoonCat.jpg" alt="cat" class="img-fluid"></p>`
     }
     else{
@@ -36,10 +49,10 @@ function death() {
     }
 }
 
-function update(){
-    document.getElementById("health").innerText = `${pHealth}`
-    document.getElementById("name").innerText = `${catName}`
-    document.getElementById("hitCount").innerText = `${hits}`
+function update(target){
+    document.getElementById("health").innerText = `${target.health}`
+    document.getElementById("name").innerText = `${target.name}`
+    document.getElementById("hitCount").innerText = `${target.hits}`
     
 }
 update()
